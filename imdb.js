@@ -10,7 +10,7 @@ async function getInfo(name) {
   if(!res || !res.results.length) return null;
 
   info = res.results[0];
-
+  console.info(res);
   res = await getDetails(info.id);
   if(!res) return null;
 
