@@ -2,13 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import { PythonShell } from 'python-shell';
-import * as https from 'https';
 
 // TODO: Consider this moving into its own module and writing it in TS with bluebird or observables
 import * as imdbJs from '../imdb';
 
 const app = express();
-
 const port = 8080; // default port to listen
 
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -50,9 +48,6 @@ app.post('/scan', (req : any, res: any) => {
 });
 
 // start the Express server
-https.createServer({
-  key: fs.readFileSync('./src/server.key'),
-  cert: fs.readFileSync('./src/server.cert'),
-},                 app).listen(port, () => {
-  console.log(`server started at https://localhost:${ port }`);
+app.listen(port, () => {
+  console.log(`server started at http://localhost:${ port }`);
 });
