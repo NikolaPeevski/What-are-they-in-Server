@@ -14,6 +14,7 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const fs_1 = __importDefault(require("fs"));
 const python_shell_1 = require("python-shell");
+const https = __importStar(require("https"));
 // TODO: Consider this moving into its own module and writing it in TS with bluebird or observables
 const imdbJs = __importStar(require("../imdb"));
 const app = express_1.default();
@@ -54,7 +55,10 @@ app.post('/scan', (req, res) => {
     });
 });
 // start the Express server
-app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
+https.createServer({
+    key: fs_1.default.readFileSync('./src/server.key'),
+    cert: fs_1.default.readFileSync('./src/server.cert'),
+}, app).listen(port, () => {
+    console.log(`server started at https://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map
