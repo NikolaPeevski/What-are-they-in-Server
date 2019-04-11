@@ -4,7 +4,7 @@ import fs from 'fs';
 import { PythonShell } from 'python-shell';
 
 // TODO: Consider this moving into its own module and writing it in TS with bluebird or observables
-import * as imdbJs from '../imdb';
+import * as imdbJs from './imdb';
 
 const app = express();
 const port = 8080; // default port to listen
