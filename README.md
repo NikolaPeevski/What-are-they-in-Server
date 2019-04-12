@@ -18,7 +18,7 @@ More to be added later in development to this section.
 ## Setup
 * git clone
 * run `npm install`
-* run `npm start`
+* run `npm run dev`
 * Press `CTRL + C` to stop the Express server.
 
 ## Testing
