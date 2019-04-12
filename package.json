@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "start": "ts-node src/index.ts",
     "dev": "./node_modules/nodemon/bin/nodemon.js",
-    "test": "mocha"
+    "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,8 @@
     "ts-node": "^8.0.3"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
     "tslint": "^5.14.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.4.1"
