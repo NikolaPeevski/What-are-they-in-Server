@@ -22,9 +22,11 @@
   },
   "homepage": "https://github.com/WillyWaser/What-Are-They-In-IMDB#readme",
   "dependencies": {
+    "@types/bluebird": "^3.5.26",
     "@types/express": "^4.16.1",
     "@types/node": "^11.13.2",
     "@types/parse": "^2.2.2",
+    "bluebird": "^3.5.4",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "express": "^4.16.4",

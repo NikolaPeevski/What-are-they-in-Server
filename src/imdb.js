@@ -4,7 +4,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'a50883fe81dcc1a07cb471896d5f2fc3';
 
 async function getInfo(name) {
-  let info = {}
+  let info = {};
 
   let res = await search(name);
   if(!res || !res.results.length) return null;
@@ -20,7 +20,7 @@ async function getInfo(name) {
 }
 
 async function getDetails(id) {
-  var options = {
+  let options = {
     method: 'GET',
     url: `${BASE_URL}/person/${id}?api_key=${API_KEY}`,
     json: true
