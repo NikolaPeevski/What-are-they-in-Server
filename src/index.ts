@@ -39,8 +39,17 @@ app.post('/scan', (req : any, res: any) => {
 
       const result = 'Zachary Levi';
       imdbJs.getInfo(result).then((info) => {
+        const url = 'https://image.tmdb.org/t/p/w500';
 
-        if (info) res.send(info);
+        if (info) {
+          info['profile_path'] = `${url}${info['profile_path']}`;
+          info['known_for'].map((el:any) => {
+            el['poster_path'] = `${url}${el['poster_path']}`;
+            el['backdrop_path'] = `${url}${el['backdrop_path']}`;
+            return el;
+          });
+          res.send(info);
+        }
         else res.sendStatus(404);
       });
     });
