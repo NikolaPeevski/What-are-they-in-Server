@@ -22,8 +22,6 @@ function getInfo(name) {
         res = yield getDetails(info.id);
         if (!res)
             return null;
-        console.log(info);
-        console.log(res);
         return Object.assign({}, info, res);
     });
 }

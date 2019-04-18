@@ -25,20 +25,21 @@ app.get('/', (req, res) => {
 });
 app.post('/scan', (req, res) => {
     // TODO: Add image processing
-    const fileName = `${new Date().getTime()}_out.png`;
+    const fileName = `${new Date().getTime()}_out.jpg`;
     fs_1.default.writeFile(fileName, req.body.data, 'base64', (err) => {
         if (err != null) {
             console.log(err);
             res.sendStatus(501);
         }
+        console.log(`../${fileName}`);
         // Pass it to the facial recognition
         const options = {
             pythonPath: '/anaconda3/bin/python',
-            pythonOptions: ['-u'],
-            scriptPath: '.',
-            args: ['Hello World!'],
+            pythonOptions: ['-i'],
+            scriptPath: './facial-recognition',
+            args: [`../${fileName}`],
         };
-        python_shell_1.PythonShell.run('./script.py', options, (err, results) => {
+        python_shell_1.PythonShell.run('./identify_face_image.py', options, (err, results) => {
             if (err)
                 console.error(err);
             if (results)
