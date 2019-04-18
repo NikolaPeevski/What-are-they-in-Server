@@ -26,12 +26,12 @@ opts, args = getopt.getopt(sys.argv[1:],"hi:o:",["ifile="])
   
 for opt, arg in opts:
       if opt == '-h':
-         print ('identify_face_img.py -i <inputfile> ')
+        # print ('identify_face_img.py -i <inputfile> ')
          sys.exit()
       elif opt in ("-i", "--ifile"):
          img_path = arg
    
-print ('Input file is "', img_path)
+#print ('Input file is "', img_path)
 
 
 
@@ -53,7 +53,7 @@ with tf.Graph().as_default():
         HumanNames = os.listdir(train_img)
         HumanNames.sort()
 
-        print('Loading feature extraction model')
+        #print('Loading feature extraction model')
         facenet.load_model(modeldir)
 
         images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
@@ -70,7 +70,7 @@ with tf.Graph().as_default():
         c = 0
 
 
-        print('Start Recognition!')
+      #  print('Start Recognition!')
         prevTime = 0
         # ret, frame = video_capture.read()
         frame = cv2.imread(img_path,0)
@@ -88,7 +88,7 @@ with tf.Graph().as_default():
             frame = frame[:, :, 0:3]
             bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
             nrof_faces = bounding_boxes.shape[0]
-            print('Face Detected: %d' % nrof_faces)
+          #  print('Face Detected: %d' % nrof_faces)
 
             if nrof_faces > 0:
                 det = bounding_boxes[:, 0:4]
@@ -129,7 +129,7 @@ with tf.Graph().as_default():
                     #print(best_class_probabilities)
                     cv2.rectangle(frame, (bb[i][0], bb[i][1]), (bb[i][2], bb[i][3]), (0, 255, 0), 2)    #boxing face
                     print(HumanNames[best_class_indices[0]]) # naam print hoyega yahan
-                    print(sys.argv[1])
+                    #print(sys.argv[1])
                     sys.stdout.flush()
                    # firebase = firebase.FirebaseApplication('https://whataretheyin.firebaseio.com/',None)
                    # result=firebase.put('/result_actor',HumanNames[best_class_indices[0]], datetime.datetime.now().timestamp())
