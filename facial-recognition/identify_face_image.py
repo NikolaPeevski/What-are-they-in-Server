@@ -88,7 +88,7 @@ with tf.Graph().as_default():
             frame = frame[:, :, 0:3]
             bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
             nrof_faces = bounding_boxes.shape[0]
-            print('Face Detected: %d' % nrof_faces)
+          #  print('Face Detected: %d' % nrof_faces)
 
             if nrof_faces > 0:
                 det = bounding_boxes[:, 0:4]
