@@ -17,8 +17,15 @@ describe('getInfo()', function() {
     expect(res).to.be.null;
   });
 
+  it('Should return correct object for Jennifer Aniston', async function() {
+    const jenn = require('./Jennifer_Aniston');
+    let res = await getInfo('Jennifer Aniston');
+
+    expect(res).to.deep.equal(jenn);
+  });
+
   for(let i = 0; i < tests.length; i++) {
-    it(`Should get correct response for ${tests[i].name}`, async function() {
+    it(`Should return correct response for ${tests[i].name}`, async function() {
       let res = await getInfo(tests[i].name);
 
       expect(res).to.have.ownPropertyDescriptor('id');
