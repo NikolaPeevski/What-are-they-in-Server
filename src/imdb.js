@@ -55,6 +55,7 @@ exports.getInfo = getInfo;
 (async function() {
   // console.log(await search('bradley cooper'));
   // console.log(await getDetails(51329));
-  console.log(await getInfo('bradley cooper'));
+  // const fs = require('fs');
+  // fs.writeFileSync('./src/Jennifer_Aniston.json', JSON.stringify(await getInfo('Jennifer Aniston')));
 })()
 //*/
