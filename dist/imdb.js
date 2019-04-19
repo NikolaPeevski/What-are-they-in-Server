@@ -15,8 +15,10 @@ function getInfo(name) {
         let res = yield search(name);
         if (!res || !res.results.length)
             return null;
+        // console.info(res);
         info = res.results[0];
-        console.info(res);
+        if (!info)
+            return null;
         res = yield getDetails(info.id);
         if (!res)
             return null;

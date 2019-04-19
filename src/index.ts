@@ -18,29 +18,38 @@ app.get('/', (req : any, res: any) => {
 
 app.post('/scan', (req : any, res: any) => {
   // TODO: Add image processing
-  const fileName = `${new Date().getTime()}_out.png`;
+  const fileName = `${new Date().getTime()}_out.jpg`;
   fs.writeFile(fileName, req.body.data, 'base64', (err) => {
     if (err != null) {
       console.log(err);
       res.sendStatus(501);
     }
-
+    console.log(`../${fileName}`);
     // Pass it to the facial recognition
     const options = {
       pythonPath: '/anaconda3/bin/python',
-      pythonOptions: ['-u'],
-      scriptPath: '.',
-      args: ['Hello World!'],
+      pythonOptions: ['-i'],
+      scriptPath: './facial-recognition',
+      args: [`../${fileName}`],
     };
 
-    PythonShell.run('./script.py', options, (err, results) => {
+    PythonShell.run('./identify_face_image.py', options, (err, results) => {
       if (err) console.error(err);
       if (results) console.log(results);
 
       const result = 'Zachary Levi';
       imdbJs.getInfo(result).then((info) => {
+        const url = 'https://image.tmdb.org/t/p/w500';
 
-        if (info) res.send(info);
+        if (info) {
+          info['profile_path'] = `${url}${info['profile_path']}`;
+          info['known_for'].map((el:any) => {
+            el['poster_path'] = `${url}${el['poster_path']}`;
+            el['backdrop_path'] = `${url}${el['backdrop_path']}`;
+            return el;
+          });
+          res.send(info);
+        }
         else res.sendStatus(404);
       });
     });
